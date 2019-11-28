@@ -4,19 +4,16 @@ import './App.css';
 
 
 import HomePage from './pages/homepage/homepage.component';
-
-const HatsPage = () => (
-  <div>
-    <h1>HATS PAGE</h1>
-  </div>
-)
+import ShopPage from './pages/shop/shop.component.jsx';
 
 function App() {
   return (
-    <Switch>
-      <Route exact path='/' component={HomePage} />
-      <Route path='/hats' component={HatsPage}/>
-    </Switch>
+    <div>
+      <Switch>
+        <Route exact path='/' component={HomePage} />
+        <Route path='/shop' component={ShopPage}/>
+      </Switch>
+    </div>
   );
 }
 
