@@ -2,7 +2,7 @@ import React from 'react';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-// import { fetchCollectionsStartAsync } from '../../redux/shop/shop.actions';
+import { fetchCollectionsStart } from '../../redux/shop/shop.actions';
 import { updateCollections } from '../../redux/shop/shop.actions';
 
 import CollectionsOverviewContainer from '../../components/collections-overview/collections-overview.container';
@@ -11,24 +11,11 @@ import CollectionPageContainer from '../collection/collection.container';
 import { firestore, convertCollectionsSnapshotToMap } from '../../firebase/firebase.utils';
 
 class ShopPage extends React.Component {
-  state = {
-    loading: true
-  };
-
-  unsubscribeFromSnapshot = null;
 
   componentDidMount() {
-    const { updateCollections } = this.props;
+    const { fetchCollectionsStart } = this.props;
 
-    const collectionRef = firestore.collection('collections');
-
-    collectionRef.get().then(snapshot => {
-      const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-      updateCollections(collectionsMap);
-      this.setState({ loading: false });
-    });
-  
-    // fetchCollectionsStartAsync();
+    fetchCollectionsStart();
   }
 
   render() {
@@ -51,8 +38,7 @@ class ShopPage extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  updateCollections: collectionsMap => 
-    dispatch(updateCollections(collectionsMap))
+  fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
 });
 
 export default connect(
