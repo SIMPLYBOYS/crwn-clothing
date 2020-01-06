@@ -3,15 +3,9 @@ import { Route } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { fetchCollectionsStart } from "../../redux/shop/shop.actions";
-import { updateCollections } from "../../redux/shop/shop.actions";
 
 import CollectionsOverviewContainer from "../../components/collections-overview/collections-overview.container";
 import CollectionPageContainer from "../collection/collection.container";
-
-import {
-  firestore,
-  convertCollectionsSnapshotToMap
-} from "../../firebase/firebase.utils";
 
 const ShopPage = ({ fetchCollectionsStart, match }) => {
   useEffect(() => {
